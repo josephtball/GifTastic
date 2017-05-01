@@ -1,3 +1,17 @@
+main {
+	margin-top: 10px;
+}
+.movie {
+	margin: 3px;
+}
+.gifDiv {
+	display: inline-block;
+	margin: 5px;
+}
+img:hover {
+	box-shadow: 0px 0px 10px #000;
+}
+
 /* sticky footer */
 html {
 	height: 100%;
