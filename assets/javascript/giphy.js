@@ -26,7 +26,7 @@ var giphy = {
 		// Set up URL
 		var apiKey = "dc6zaTOxFJmzC";
 		var limit = "10"
-		var baseURL = "http://api.giphy.com/v1/gifs/search?api_key="+apiKey+"&limit="+limit;
+		var baseURL = "https://api.giphy.com/v1/gifs/search?api_key="+apiKey+"&limit="+limit;
 		var queryURL = baseURL+"&q="+movie;
 		// Send API request
 		$.ajax({
@@ -73,6 +73,7 @@ var giphy = {
 		var newMovie = $("#newGifButton").val().trim();
 		giphy.topics.push(newMovie);
 		giphy.displayButtons();
+		$("#newGifButton").val("");
 	},
 }
 // Display buttons for topics array at start
