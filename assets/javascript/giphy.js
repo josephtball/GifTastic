@@ -17,7 +17,7 @@ var giphy = {
 			button.text(giphy.topics[i]);
 			$buttonArea.append(button);
 		}
-		// get .movie elements for onclick function
+		// Get .movie elements for onclick function
 		$(".movie").on("click", giphy.displayGifs);
 	},
 	displayGifs: function() {
@@ -45,10 +45,14 @@ var giphy = {
 				image.data("still", response.data[i].images.fixed_height_still.url).data("animate", response.data[i].images.fixed_height.url);
 				gifDiv.append(image);
 				var rating = $("<p>").text("Rating: "+response.data[i].rating.toUpperCase());
+				// Set a class for R rated gifs to distinguish them from others
+				if (response.data[i].rating === "r") {
+					rating.addClass("red");
+				}
 				gifDiv.append(rating);
 				$gifArea.append(gifDiv);
 			}
-			// get .gif elements for onclick function
+			// Get .gif elements for onclick function
 			$(".gif").on("click", giphy.stateSwitch);
 		});
 	},
@@ -70,7 +74,16 @@ var giphy = {
 		}
 	},
 	addButton: function() {
+		// Get string from innput field
 		var newMovie = $("#newGifButton").val().trim();
+		// Capitalize first letters in all words
+		newMovie = newMovie.toLowerCase().split(" "); // Turn newMovie into an array of words
+		for (var i = 0; i < newMovie.length; i++) {
+			newMovie[i] = newMovie[i].split(""); // Turn the word at position i into an array of letters
+			newMovie[i][0] = newMovie[i][0].toUpperCase();	// Capitalize the first letter
+			newMovie[i] = newMovie[i].join(""); // Join the array of letters back into a word
+		}
+		newMovie = newMovie.join(" "); // Join the array of words back into a single string
 		giphy.topics.push(newMovie);
 		giphy.displayButtons();
 		$("#newGifButton").val("");
