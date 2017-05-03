@@ -5,14 +5,14 @@ var $gifArea = $("#gifArea");
 // GIPHY API object
 var giphy = {
 	// Array 
-	topics: ["The Godfather", "Pulp Fiction", "Fight Club", "Forrest Gump", "Inception", "The Matrix", "Interstellar", "The Prestige",],
+	topics: ["Happy", "Sad", "Afraid", "Mad", "Curious", "frustrated", "Pleased", "Confident", "Giddy", "Excited"],
 	displayButtons: function() {
 		// Clear #buttonArea div
 		$buttonArea.empty();
 		// Loop through topics array and make a button for each element in array
 		for (var i = 0; i < giphy.topics.length; i++) {
 			var button = $("<button>");
-			button.addClass("movie btn btn-default");
+			button.addClass("movie btn btn-primary");
 			button.data("name", giphy.topics[i]);
 			button.text(giphy.topics[i]);
 			$buttonArea.append(button);
@@ -40,11 +40,11 @@ var giphy = {
 				var gifDiv = $("<div>");
 				gifDiv.addClass("gifDiv");
 				var image = $("<img>").attr("src", response.data[i].images.fixed_height_still.url);
-				image.addClass("gif");
+				image.addClass("gif img-responsive");
 				image.data("state", "still");
 				image.data("still", response.data[i].images.fixed_height_still.url).data("animate", response.data[i].images.fixed_height.url);
 				gifDiv.append(image);
-				var rating = $("<p>").text("Rating: "+response.data[i].rating);
+				var rating = $("<p>").text("Rating: "+response.data[i].rating.toUpperCase());
 				gifDiv.append(rating);
 				$gifArea.append(gifDiv);
 			}
